@@ -61,6 +61,10 @@ const data = {
 
 app.use(express.static('dist')) // everything in dist will be served to backend
 
+app.get('/data', async (_req, res) => {
+  res.json(data)
+})
+
 app.get('/', (_req, res) => {
   // res.send(`<h1>Hello Word!!!!</h1>`)
 

@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
 
-const App = () => <div>App component</div>
-
-
-ReactDOM.render(<App/>, document.querySelector('#Container') )
+ReactDOM.render(<App />, document.querySelector('#Container'))

@@ -4,6 +4,7 @@ import { readFileSync } from 'fs'
 import App from '../client/App'
 import { renderToString } from 'react-dom/server'
 import React from 'react'
+import { handelModifyAnswerVotes } from '../shared/utility'
 
 const app = new express()
 
@@ -60,6 +61,16 @@ const data = {
 }
 
 app.use(express.static('dist')) // everything in dist will be served to backend
+
+app.get('/vote/:answerId', (req, res) => {
+  const { query, params } = req
+  data.answers = handelModifyAnswerVotes(
+    data.answers,
+    params.answerId,
+    +query.increment
+  )
+  res.json({ OK: 'OK', query, params })
+})
 
 app.get('/data', async (_req, res) => {
   res.json(data)
